@@ -1,0 +1,4 @@
+usr/bin/query-stack-data usr/bin
+usr/bin/sip usr/bin
+etc/get-stack-rc etc/get-stack
+var/cache/stack-info-raw.json var/cache/stack-info.json

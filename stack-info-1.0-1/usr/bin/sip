@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+import json
+import argparse
+
+# Create an argument parser
+parser = argparse.ArgumentParser()
+parser.add_argument("value", type=str, help="The value to check in the array")
+
+# Parse the command line argument
+args = parser.parse_args()
+
+with open('/var/cache/stack-info.json/stack-info-raw.json', 'r') as file:
+    content = file.read().replace('}\n{', '},\n{').replace("\n", " ")
+
+# Print the updated content (without changing the file)
+content = f"[{content}]"
+data = json.loads(content)
+
+for _var in data:
+    if (_var["output_key"] == args.value):
+        print (_var["output_value"])
+        exit (0)

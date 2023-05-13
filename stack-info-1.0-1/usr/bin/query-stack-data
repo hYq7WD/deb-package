@@ -1,0 +1,3 @@
+#!/bin/bash
+source /etc/get-stack/get-stack-rc
+openstack stack output show stack2 --all -f value > /var/cache/stack-info.json/stack-info-raw.json
