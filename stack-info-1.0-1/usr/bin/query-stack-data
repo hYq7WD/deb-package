@@ -1,3 +1,18 @@
-#!/bin/bash
-source /etc/get-stack/get-stack-rc
-openstack stack output show stack2 --all -f value > /var/cache/stack-info.json/stack-info-raw.json
+#!/usr/bin/python3
+# run a command and save the output to file.txt if successful
+import sys
+import subprocess
+import os
+
+source_file = "/etc/get-stack/get-stack-rc"
+command = "openstack image list "  # the command to run is the first argument
+filename = "/etc/get-stack/get-stack-rc"  # the output file name
+
+
+try:
+    output = subprocess.check_output(
+        f'/bin/bash -c "source {source_file} && {command}" ', shell=True)
+    with open(filename, "w") as f:  # open the output file for writing
+        f.write(output.decode())
+except subprocess.CalledProcessError as e:  # catch the exception if the command fails
+    sys.exit(e.returncode)
